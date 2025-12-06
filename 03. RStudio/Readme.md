@@ -12,3 +12,16 @@ Anomaly Detection in the Presence of Missing Values
 
 Resource: https://arxiv.org/abs/1809.01605Links to an external site.
 Description: This paper investigates strategies for anomaly detection when datasets contain missing values. It evaluates various methods and provides recommendations for effectively identifying anomalies in incomplete data scenarios.
+
+ggplot2: Elegant Graphics for Data Analysis
+
+Resource: https://ggplot2-book.org/programming.htmlLinks to an external site.
+Description: This book introduces the ggplot2 package, which is based on the grammar of graphics, providing a powerful and flexible approach to data visualization in R. 
+Data Wrangling: The Challenging Journey from the Wild to the Lake
+
+Resource: https://www.cidrdb.org/cidr2015/Papers/CIDR15_Paper2.pdfLinks to an external site.
+Description: The authors address the complexities of creating and maintaining data lakes, emphasizing the need for curated data to ensure accessibility and usability for analysis. They propose methodologies to manage and govern data effectively within such repositories. 
+A Systematic Study of Data Wrangling
+
+Resource: https://www.mecs-press.org/ijitcs/ijitcs-v10-n1/IJITCS-V10-N1-4.pdfLinks to an external site.
+Description: This study presents the theory, design, and usage aspects of the data wrangling process in data warehousing and business intelligence. It defines data wrangling as an art of data transformation and preparation, emphasizing its role in data management. 
