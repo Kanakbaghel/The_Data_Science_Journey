@@ -151,7 +151,35 @@ sapply(retail, missing) # simplified output depends on the function output
 # - in that case sapply creates a vector
 
 # 2nd case : 
+# - if the same function is applied using lapply and the output is a list with n elements of size 1
+# - in that case sapply creates a vector
+lapply(retail, range) # output is a list (two values - min/max)
+sapply(retail, range) # output is matrix
 
+# to just get the class of each class
+sapply(retail, class)
+lapply(retail,class)
 
+# dplyr : Grammar of manipulation
+# ggplot : visualization
+# readxl : functions to import excel files
+# lubridate : datetime
 
+retail$InvoiceDate[1]
+library(lubridate)
 
+retail$InvoiceDate <- dmy_hm(retail$InvoiceDate)
+
+# dplyr Package
+library(dplyr)
+
+# 1. Select  -> selecting columns
+select(retail,InvoiceDate,InvoiceNo, CustomerID)
+
+# 2. Filter -> for row filtering
+filter(retail, Country== "United Kingdom")
+
+# 3. Mutate
+# 4. Arrange
+# 5. Group by
+# 6. Summary
