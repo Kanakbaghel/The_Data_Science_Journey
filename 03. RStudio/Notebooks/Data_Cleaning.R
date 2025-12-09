@@ -22,3 +22,7 @@ ismissing <- function(x){
 sapply(titanic_2_, ismissing)
 titanic_2_$Cabin
 
+sapply(titanic_2_ , function(x) {sum(is.na(x))})
+
+"" == FALSE
+
