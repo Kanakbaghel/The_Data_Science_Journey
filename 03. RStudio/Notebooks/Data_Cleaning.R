@@ -158,4 +158,20 @@ titanic_2_ %>% mutate(Name = tolower(Name))
 # *if there are high percentage of missing values
 # 2. Imputation
 
+(sapply(titanic_2_, ismissing))/891 *100
 
+# >30% is non negotiable and you may delete the columns
+# for imputation :
+# 1. constant
+# 2. statistical value : mean,median, mode
+# 3. ML Imputers : KNN - k nearest neighbours
+sum(is.na(titanic_2_$Age))
+mean(titanic_2_$Age, na.rm = TRUE) # don't use missing in calculation of mean
+summary(titanic_2_$Age)
+
+# check age by sex
+titanic_2_ %>%
+  group_by(Sex) %>%
+  summarize(Mean = mean(Age, na.rm = TRUE))
+
+head(titanic_2_$Name)
