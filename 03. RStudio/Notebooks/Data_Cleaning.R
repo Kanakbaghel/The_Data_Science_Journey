@@ -32,7 +32,6 @@ sapply(titanic_2_ , function(x) {sum(is.na(x))})
 
 # replace empty strings
 titanic_2_$Cabin <- sapply(titanic_2_$Cabin, trimws)
-titanic_2_[titanic_2_$Cabin == "", 'Cabin'] <- NA
 
 trimws(titanic_2_$Cabin == "")
 
@@ -113,3 +112,50 @@ df$Country <- sapply(df$Country,
        function (Country) {ifelse((Country == "us") || (Country == 'u.s.a'),
                 'us', Country)})
 df
+
+#--------------------------------
+unique(titanic_2_$Embarked)
+
+# define a function for treatment
+replace_with_NAs <- function(col) {
+  new_col <- c() # new vector
+  for (x in col){ # iterate through the values in the column 
+    if (x == ""){
+      new_col <- c(new_col, NA)
+    } else {
+      new_col <- c(new_col, x)
+    }
+  }
+  return(new_col)
+}
+
+sum(is.na((titanic_2_$Embarked)))
+sum(is.na(replace_with_NAs(titanic_2_$Embarked)))
+
+# perform for only character columns
+sapply(titanic_2_, class)
+library(dplyr)
+
+# %>% pipeline operator 
+# Select_if from dplyr --> select columns which follow the given condition
+# is.character --> built in function which checks if the data type is character or not
+char_cols <- titanic_2_ %>% 
+  select_if(is.character) %>%
+  names()
+char_cols
+
+lapply(titanic_2_[char_cols], replace_with_NAs)
+
+new_tit <- titanic_2_ %>%
+  mutate(across(which(is.character), ~ifelse(.x == "", NA, .x )))
+
+sapply(new_tit, ismissing)
+
+titanic_2_ %>% mutate(Name = tolower(Name))
+
+# treat the missing values
+# 1. Deletion : Rows and columns
+# *if there are high percentage of missing values
+# 2. Imputation
+
+
