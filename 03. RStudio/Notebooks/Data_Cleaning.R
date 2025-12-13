@@ -146,8 +146,14 @@ char_cols
 
 lapply(titanic_2_[char_cols], replace_with_NAs)
 
-new_tit <- titanic_2_ %>%
-  mutate(across(which(is.character), ~ifelse(.x == "", NA, .x )))
+titanic_2_ %>%
+  mutate(across(where(is.character), ~ifelse(.x == "", NA, .x ) # anonymous function
+                ))
+
+titanic_2_ %>%
+  mutate(across(where(is.character), 
+                function(x) {ifelse(x == "", NA, x )} 
+  ))
 
 sapply(new_tit, ismissing)
 
@@ -175,3 +181,27 @@ titanic_2_ %>%
   summarize(Mean = mean(Age, na.rm = TRUE))
 
 head(titanic_2_$Name)
+
+# names() get the column  names in a dataframe
+# colnames() or COLNAMES()
+
+# pipeline : task 1 --> task 2 --> task 3
+
+titanic_2_ %>% # calling the data
+  select_if(is.character) %>% # using the select_if function to get only character cols from the data
+  names() # getting names from the filtered data
+
+temp <- select_if(titanic_2_, is.character)
+names(temp)
+
+titanic_2_ %>%
+  summarise(across(where(is.numeric),
+                   function(x) {sum(is.na(x))}
+                   ))
+
+titanic_2_ %>%
+  summarise_all(mean, na.rm = TRUE)
+
+# na.rm --> parameter which need to be set TRUE when missing value in the column
+
+
