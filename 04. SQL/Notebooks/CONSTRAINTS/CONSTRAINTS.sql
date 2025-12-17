@@ -269,6 +269,96 @@ ADD Email VARCHAR(255) default 'abc@xyz.com' ;
 
 SELECT * FROM CUSTOMERDETAILS;
 
+# Updation : 
+/*
+- overall 
+- for Specific Values
+- Missing Values
+*/
+
+-- Default Setting is not allow changes/updates
+Update customerdetails
+set email = concat(custid, '@abccorp.com');
+
+# Error Code: 1175. You are using safe update mode and you tried to update a table
+# without a WHERE that uses a KEY column.
+# To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
+
+set sql_safe_updates = 0; # disable the safe mode 
+
+# when need to update all rows:
+Update customerdetails
+set email = concat(custid, '@abccorp.com');
+
+select * from customerdetails;
+
+# replace missing values
+update customerdetails
+set addressline2 = "..."
+where addressline2 is null ;
+
+select * from customerdetails;
+
+# if Mr. Michael Smith with custid A105 has changed address
+
+update customerdetails
+set addressline1 = "52 RG Road",
+	addressline2 = "Block C "
+where custid = 'A105' and custname = "Michael Smith";
+
+select * from customerdetails; 
+
+# TCL Commands
+Delete from customerdetails # without where it'll remove all rows
+where custid in ('A106','A107');
+
+Select * from customerdetails;
+
+Update customerdetails
+set email = 'abc@xyz.com';
+
+select * from customerdetails;
+
+# want to change, still want an option to revert the changes
+
+# Define  a transaction
+
+start transaction;
+
+# Change 
+Update customerdetails
+set email = concat(custid,'@xyz.corp');
+
+# check
+select * from customerdetails;
+
+# revert the change
+rollback;
+
+select * from customerdetails
+
+/*
+- Drop : Drops the object : Schema, Table as a whole
+# drop table_name if exists;
+
+- Delete : conditional
+-- Allows to delete specific rows when used with where clause 
+-- without where, it deletes all rows and equivalent to truncate
+
+- Truncate deletes all rows : keeping the table structure
+
+*/
+
+# Views
+Use classicmodels;
+
+create view cust_data_aus_view
+as
+select * from customers
+where country = 'Australia';
+
+select * from cust_data_aus_view;
+
 # MODIFY OR UPDATE THESE VALUES
 -- UPDATE OPERATION
 -- REMOVE ROWS : DELETE AND truncate OPERATION
