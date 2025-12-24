@@ -1,6 +1,5 @@
 # 📊 Data Science Roadmap
 -----
-__________
 
 ```mermaid
 flowchart TB
@@ -15,7 +14,7 @@ flowchart TB
     DS --> GENAI[LLMs & GenAI]
     DS --> DEPLOY[Deployment]
     DS --> CLOUD[Platforms]
-
+```
 
 ---
 
