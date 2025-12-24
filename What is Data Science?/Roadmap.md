@@ -1,5 +1,3 @@
-
-````md
 # 📊 Data Science Roadmap (Interactive)
 
 > Click nodes in the roadmap ⤵️ and expand sections to explore topics.
